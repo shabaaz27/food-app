@@ -5,6 +5,7 @@ import classes from './Cart.module.css'
 import CartContext from '../../store/cart-context'
 import CartItems from './CartItem'
 import CartItem from './CartItem'
+import Checkout from './Checkout'
 const Cart = props => {
 const cartCtx = useContext(CartContext)
 
@@ -16,6 +17,9 @@ const cartCtx = useContext(CartContext)
       cartCtx.addItem(item)
 
   }
+   const orderHandler =()=>{
+    
+   }
     const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`
     const cartItems = cartCtx.items.map((item)=>
     <CartItem key={item.id} 
@@ -32,9 +36,10 @@ const cartCtx = useContext(CartContext)
             <span>Total Amount</span>
             <span>{totalAmount}</span>    
         </div>
+       <Checkout/> 
         <div className={classes.actions}>
             <button className={classes['button--alt']} onClick={props.onClose}>Close</button>
-           {hasItems && <button className={classes.button}>Order</button>}
+           {hasItems && <button className={classes.button} onClick={orderHandler}>Order</button>}
         </div>    
     </Modals>
 }
